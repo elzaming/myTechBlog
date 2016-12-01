@@ -1,0 +1,102 @@
+<%- include include/header.html %>
+
+<div class="row article-content">
+    <div class="col-md-8">
+
+        <%
+        articles.forEach(function(article){
+
+        %>
+        <div class="media">
+            <div class="media-left ">
+                <a href="#">
+                    <img class="media-object comment_avatar" src="<%=article.user.avatar%>">
+                </a>
+            </div>
+            <div class="media-body">
+                <h4 class="media-heading article_title"><a href="/articles/detail/<%=article._id%>"><%= article.title
+                    %></a></h4>
+
+                <div class="media-bottom" id="article_stats">
+                    <%= article.user.username%>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <%=article.createAt.toLocaleString('en-US')%> &nbsp;&nbsp;&nbsp;&nbsp;
+                    <%= article.pv %>Views&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span class="glyphicon glyphicon-comment"></span> <a
+                        href="/articles/detail/<%=article._id%>/#comment_list"><%= article.comments.length%>Comments</a>
+                </div>
+                <div>
+                    <img class="img-responsive" src="<%=article.attachments%>"/>
+
+                    <p>
+                        <%-article.content.length<=500?article.content:article.content.slice(0,500)+'...'%>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+        <p class="text-right">
+            <a href="/articles/detail/<%=article._id%>">
+                continue reading...
+            </a>
+        </p>
+        <hr/>
+        <%})
+        %>
+    </div>
+
+    <%- include include/sidebar.html %>
+</div>
+
+<nav id="page_nav">
+    <ul class="pagination">
+        <%
+        if(pageNum>1){
+        %>
+        <li>
+            <a href="/?keyword=<%=keyword%>&pageNum=<%=pageNum-1%>&&pageSize=<%=pageSize%>" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        <%
+        }
+        %>
+
+        <%
+        for(var i=1;i<=totalPage;i++){
+        %>
+        <li class="<%= i == pageNum?'active':''%>"><a
+                href="/?keyword=<%=keyword%>&pageNum=<%=i%>&&pageSize=<%=pageSize%>"><%=i%></a></li>
+        <%
+        }
+        %>
+
+        <%
+        if(pageNum < totalPage){
+        %>
+        <li>
+            <a href="/?keyword=<%=keyword%>&pageNum=<%=pageNum+1%>&&pageSize=<%=pageSize%>" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+        <%
+        }
+        %>
+    </ul>
+</nav>
+
+
+<footer class="panel-footer bottom">
+    <div class="container">
+
+        <!--<div class="row">
+            <div class="col-lg-12">-->
+        <p>Copyright &copy; CODING... 2016. All rights reserved.</p>
+        <!-- </div>-->
+
+    </div>
+
+    </div>
+</footer>
+
+<%- include include/footer.html %>
+

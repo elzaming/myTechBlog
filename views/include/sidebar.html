@@ -1,0 +1,40 @@
+<div class="col-md-4 siderbar">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4>Posts</h4>
+        </div>
+        <ul class="list-group">
+            <%
+            articles.forEach(function(article){
+            %>
+            <li class="list-group-item"><a href="/articles/detail/<%=article._id%>"><%= article.title %></a></li>
+
+            <%
+            })
+            %>
+        </ul>
+    </div>
+
+    <!--这里是需要写的地方-->
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4>Blogs I Follow</h4>
+        </div>
+        <div class="panel-body">
+            <ul class="list-group">
+                <li class="list-group-item"><a href="https://www.smashingmagazine.com/">Smathing Magzine</a></li>
+                <hr/>
+                <li class="list-group-item"><a href="http://designrfix.com/">Designrfix</a></li>
+                <hr/>
+                <li class="list-group-item"><a href="https://webdesignledger.com/">Web Design Ledger</a></li>
+                <hr/>
+                <li class="list-group-item"><a href="http://inspiredm.com/">InspiredM</a></li>
+                <hr/>
+                <li class="list-group-item"><a href="http://alistapart.com/">A List Apart</a></li>
+
+            </ul>
+        </div>
+    </div>
+
+
+</div>
